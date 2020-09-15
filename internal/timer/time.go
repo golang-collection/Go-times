@@ -9,7 +9,11 @@ import "time"
 **/
 
 func GetNowTime() time.Time{
-	return time.Now()
+	location, err := time.LoadLocation("Asia/Shanghai")
+	if err != nil{
+		return time.Now()
+	}
+	return time.Now().In(location)
 }
 
 func GetCalculateTime(currentTimer time.Time, d string) (time.Time, error){
